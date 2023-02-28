@@ -82,8 +82,8 @@ void inputLoop() {
 //------------------------------------------------------------------------------
 bool hitTheGas(Car& gto, int gasAmount, int& enginesLeft) {
 
-    // hit the gas
     gasAmount = abs(gasAmount);
+
     if (gasAmount > GASMAX) {
         cout << "GTO engine blown! Engines left: "
             << --enginesLeft << "\n\n";
