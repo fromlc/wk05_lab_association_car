@@ -58,7 +58,7 @@ int main() {
         cout << "Vroom!!\n\n";
     }
 
-    cout << "\nGoodbye!\n\n";
+    cout << "Goodbye!\n\n";
 
     return 0;
 }
