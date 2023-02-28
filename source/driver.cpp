@@ -35,8 +35,6 @@ int main() {
 
     inputLoop();
 
-    cout << "Goodbye!\n\n";
-
     return 0;
 }
 
@@ -66,6 +64,7 @@ void inputLoop() {
 
         // 0 gas means user wants to quit app
         if (!gasAmount) {
+            cout << '\n';
             break;
         }
 
@@ -73,10 +72,13 @@ void inputLoop() {
             displayDashboard(gto);
         }
     }
+    
+    cout << "Goodbye!\n\n";
 }
 
 //------------------------------------------------------------------------------
-// set car's gas pedal level, which sets engine rpms and transmission gear
+// - sets car's gas pedal level, which sets engine rpms and transmission gear
+// - returns false on blown engine, true otherwise
 //------------------------------------------------------------------------------
 bool hitTheGas(Car& gto, int gasAmount, int& enginesLeft) {
 
