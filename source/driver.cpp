@@ -24,6 +24,7 @@ constexpr int ENGINESLEFT = 3;
 void displayBanner();
 void inputLoop();
 bool hitTheGas(Car&, int, int&);
+void displayDashboard(Car&);
 
 //------------------------------------------------------------------------------
 // entry point
@@ -63,24 +64,13 @@ void inputLoop() {
         int gasAmount;
         cin >> gasAmount;
 
-        // 0 gas means quit
+        // 0 gas means user wants to quit app
         if (!gasAmount) {
             break;
         }
 
         if (hitTheGas(gto, gasAmount, enginesLeft)) {
-
-            cout << "Gas pedal: " << gto.getGasPedal() << '\n';
-            cout << "Engine RPMs: " << gto.getRpms() << '\n';
-
-            int gear = gto.getGear() + 1;
-            cout << "Transmission gear: " << gear << '\n';
-
-            cout << "Vroom";
-            for (int i = 0; i < gear; ++i) {
-                cout << '!';
-            }
-            cout << "\n\n";
+            displayDashboard(gto);
         }
     }
 }
@@ -102,4 +92,22 @@ bool hitTheGas(Car& gto, int gasAmount, int& enginesLeft) {
     gto.setGasPedal(gasAmount);
 
     return true;
+}
+
+//------------------------------------------------------------------------------
+// display results of setting car's gas pedal
+//------------------------------------------------------------------------------
+void displayDashboard(Car& gto) {
+
+    cout << "Gas pedal: " << gto.getGasPedal() << '\n';
+    cout << "Engine RPMs: " << gto.getRpms() << '\n';
+
+    int gear = gto.getGear() + 1;
+    cout << "Transmission gear: " << gear << '\n';
+
+    cout << "Vroom";
+    for (int i = 0; i < gear; ++i) {
+        cout << '!';
+    }
+    cout << "\n\n";
 }
