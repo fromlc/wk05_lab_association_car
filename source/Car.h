@@ -1,5 +1,11 @@
 //------------------------------------------------------------------------------
 // Car, Engine, AutoTrans : class declarations and definitions
+// 
+// - Car class has member variables of type Engine, type AutoTrans
+// - Setting Car's gas pedal sets Engine's rpms
+// - Setting Engine's rpms sets AutoTrans' gear
+// - From app code, get Engine's rpms with Car::getRpms()
+// - From app code, get AutoTrans' gear with Car::getGear()
 //------------------------------------------------------------------------------
 #pragma once
 
