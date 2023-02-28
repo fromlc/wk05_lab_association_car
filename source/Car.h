@@ -1,21 +1,7 @@
 //------------------------------------------------------------------------------
-// Car, Engine, AutoTrans,  : class declarations and definitions
+// Car, Engine, AutoTrans : class declarations and definitions
 //------------------------------------------------------------------------------
 #pragma once
-
-//------------------------------------------------------------------------------
-// Engine
-//------------------------------------------------------------------------------
-class Engine {
-private:
-    int rpms;
-
-public:
-    Engine() : rpms(0) { }
-
-    void setRpms(int _rpms) { rpms = _rpms; }
-    int getRpms() const { return rpms; }
-};
 
 //------------------------------------------------------------------------------
 // AutoTrans
@@ -32,7 +18,26 @@ public:
 };
 
 //------------------------------------------------------------------------------
-// Car, Engine, AutoTrans,  : class declarations and definitions
+// Engine
+//------------------------------------------------------------------------------
+class Engine {
+private:
+    int rpms;
+
+public:
+    Engine() : rpms(0) { }
+
+    void setRpms(int _rpms, AutoTrans& at) {
+        rpms = _rpms * 1000;
+
+        at.setGear(rpms / 2000);
+    }
+
+    int getRpms() const { return rpms; }
+};
+
+//------------------------------------------------------------------------------
+// Car : compositions Engine and AutoTrans
 //------------------------------------------------------------------------------
 class Car {
 private:
@@ -43,7 +48,18 @@ private:
 public:
     Car() : gasPedal(0) { }
 
-    void setGasPedal(int gas) { gasPedal = gas; }
-    int getGasPedal() const { return gasPedal; }
-};
+    // gas pedal controls engine rpms and transmission gear
+    void setGasPedal(int gasAmount) {
+        gasPedal = gasAmount;
 
+        // engine needs to know which transmission to shift
+        v8.setRpms(gasPedal, tranny);
+    }
+
+    // get gas pedal level
+    int getGasPedal() const { return gasPedal; }
+
+    // getters for engine and transmission data
+    int getRpms() const { return v8.getRpms(); }
+    int getGear() const { return tranny.getGear(); }
+};

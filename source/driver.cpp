@@ -15,6 +15,12 @@ int main() {
 
     Car gto;
 
+    gto.setGasPedal(2);
+
+    cout << "Gas pedal: " << gto.getGasPedal() << '\n';
+    cout << "Engine RPMs: " << gto.getRpms() << '\n';
+    cout << "Transmission gear: " << gto.getGear() << '\n';
+
     cout << "\nVroom!!\n\n";
 
     return 0;
