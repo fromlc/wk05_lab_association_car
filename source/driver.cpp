@@ -6,22 +6,59 @@
 
 #include <iostream>
 
-using namespace std;
+//------------------------------------------------------------------------------
+// using symbols
+//------------------------------------------------------------------------------
+using std::cin;
+using std::cout;
+
+//------------------------------------------------------------------------------
+// constants
+//------------------------------------------------------------------------------
+constexpr int GASMAX = 6;
+constexpr int ENGINESLEFT = 3;
 
 //------------------------------------------------------------------------------
 // entry point
 //------------------------------------------------------------------------------
 int main() {
 
+    cout << "\nDrive a GTO!\n";
+    cout << "Enter gas amounts from 1 to " << GASMAX << ", 0 quits.\n";
+    cout << "You can blow up to " << ENGINESLEFT << " engines.\n\n";
+
     Car gto;
+    int enginesLeft = ENGINESLEFT;
 
-    gto.setGasPedal(2);
+    while (enginesLeft) {
 
-    cout << "Gas pedal: " << gto.getGasPedal() << '\n';
-    cout << "Engine RPMs: " << gto.getRpms() << '\n';
-    cout << "Transmission gear: " << gto.getGear() << '\n';
+        cout << "How much gas? ";
+        int gasAmount;
+        cin >> gasAmount;
 
-    cout << "\nVroom!!\n\n";
+        // quit on 0 gas
+        if (!gasAmount) {
+            break;
+        }
+
+        // hit the gas
+        gasAmount = abs(gasAmount);
+        if (gasAmount > GASMAX) {
+            cout << "GTO engine blown! Engines left: " 
+                << --enginesLeft << "\n\n";
+            continue;
+        }
+
+        // gas pedal controls engine rpms and transmission gear
+        gto.setGasPedal(gasAmount);
+
+        cout << "Gas pedal: " << gto.getGasPedal() << '\n';
+        cout << "Engine RPMs: " << gto.getRpms() << '\n';
+        cout << "Transmission gear: " << gto.getGear() + 1 << '\n';
+        cout << "Vroom!!\n\n";
+    }
+
+    cout << "\nGoodbye!\n\n";
 
     return 0;
 }
