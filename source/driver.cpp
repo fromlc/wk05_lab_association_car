@@ -19,13 +19,16 @@ constexpr int GASMAX = 6;
 constexpr int ENGINESLEFT = 3;
 
 //------------------------------------------------------------------------------
+// prototypes
+//------------------------------------------------------------------------------
+void displayBanner();
+
+//------------------------------------------------------------------------------
 // entry point
 //------------------------------------------------------------------------------
 int main() {
 
-    cout << "\nDrive a GTO!\n";
-    cout << "Enter gas amounts from 1 to " << GASMAX << ", 0 quits.\n";
-    cout << "You can blow up to " << ENGINESLEFT << " engines.\n\n";
+    displayBanner();
 
     // app setup
     Car gto;
@@ -70,4 +73,14 @@ int main() {
     cout << "Goodbye!\n\n";
 
     return 0;
+}
+
+//------------------------------------------------------------------------------
+// app setup
+//------------------------------------------------------------------------------
+void displayBanner() {
+
+    cout << "\nDrive a GTO!\n";
+    cout << "Enter gas amounts from 1 to " << GASMAX << ", 0 quits.\n";
+    cout << "You can blow up to " << ENGINESLEFT << " engines.\n\n";
 }
