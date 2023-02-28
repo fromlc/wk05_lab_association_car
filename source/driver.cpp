@@ -27,9 +27,11 @@ int main() {
     cout << "Enter gas amounts from 1 to " << GASMAX << ", 0 quits.\n";
     cout << "You can blow up to " << ENGINESLEFT << " engines.\n\n";
 
+    // app setup
     Car gto;
     int enginesLeft = ENGINESLEFT;
 
+    // input loop
     while (enginesLeft) {
 
         cout << "How much gas? ";
@@ -54,8 +56,15 @@ int main() {
 
         cout << "Gas pedal: " << gto.getGasPedal() << '\n';
         cout << "Engine RPMs: " << gto.getRpms() << '\n';
-        cout << "Transmission gear: " << gto.getGear() + 1 << '\n';
-        cout << "Vroom!!\n\n";
+
+        int gear = gto.getGear() + 1;
+        cout << "Transmission gear: " << gear << '\n';
+
+        cout << "Vroom";        
+        for (int i = 0; i < gear; ++i) {
+            cout << '!';
+        }
+        cout << "\n\n";
     }
 
     cout << "Goodbye!\n\n";
