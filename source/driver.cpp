@@ -44,7 +44,9 @@ int main() {
 void displayBanner() {
 
     cout << "\nDrive a GTO!\n";
-    cout << "Enter gas amounts from 1 to " << GASMAX << ", 0 quits.\n";
+    cout << "Enter how hard to hit the gas pedal (1 to " 
+        << GASMAX << "), 0 quits.\n";
+    cout << "Hit the gas too hard and you'll blow the engine!\n";
     cout << "You can blow up to " << ENGINESLEFT << " engines.\n\n";
 }
 
