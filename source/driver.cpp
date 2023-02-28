@@ -23,6 +23,7 @@ constexpr int ENGINESLEFT = 3;
 //------------------------------------------------------------------------------
 void displayBanner();
 void inputLoop();
+bool hitTheGas(Car&, int, int&);
 
 //------------------------------------------------------------------------------
 // entry point
@@ -62,32 +63,43 @@ void inputLoop() {
         int gasAmount;
         cin >> gasAmount;
 
-        // quit on 0 gas
+        // 0 gas means quit
         if (!gasAmount) {
             break;
         }
 
-        // hit the gas
-        gasAmount = abs(gasAmount);
-        if (gasAmount > GASMAX) {
-            cout << "GTO engine blown! Engines left: "
-                << --enginesLeft << "\n\n";
-            continue;
+        if (hitTheGas(gto, gasAmount, enginesLeft)) {
+
+            cout << "Gas pedal: " << gto.getGasPedal() << '\n';
+            cout << "Engine RPMs: " << gto.getRpms() << '\n';
+
+            int gear = gto.getGear() + 1;
+            cout << "Transmission gear: " << gear << '\n';
+
+            cout << "Vroom";
+            for (int i = 0; i < gear; ++i) {
+                cout << '!';
+            }
+            cout << "\n\n";
         }
-
-        // gas pedal controls engine rpms and transmission gear
-        gto.setGasPedal(gasAmount);
-
-        cout << "Gas pedal: " << gto.getGasPedal() << '\n';
-        cout << "Engine RPMs: " << gto.getRpms() << '\n';
-
-        int gear = gto.getGear() + 1;
-        cout << "Transmission gear: " << gear << '\n';
-
-        cout << "Vroom";
-        for (int i = 0; i < gear; ++i) {
-            cout << '!';
-        }
-        cout << "\n\n";
     }
+}
+
+//------------------------------------------------------------------------------
+// set car's gas pedal level, which sets engine rpms and transmission gear
+//------------------------------------------------------------------------------
+bool hitTheGas(Car& gto, int gasAmount, int& enginesLeft) {
+
+    // hit the gas
+    gasAmount = abs(gasAmount);
+    if (gasAmount > GASMAX) {
+        cout << "GTO engine blown! Engines left: "
+            << --enginesLeft << "\n\n";
+        return false;
+    }
+
+    // gas pedal controls engine rpms and transmission gear
+    gto.setGasPedal(gasAmount);
+
+    return true;
 }
