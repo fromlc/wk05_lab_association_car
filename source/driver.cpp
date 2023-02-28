@@ -78,6 +78,7 @@ void inputLoop() {
 
 //------------------------------------------------------------------------------
 // - sets car's gas pedal level, which sets engine rpms and transmission gear
+// - updates enginesLeft reference parameter
 // - returns false on blown engine, true otherwise
 //------------------------------------------------------------------------------
 bool hitTheGas(Car& gto, int gasAmount, int& enginesLeft) {
